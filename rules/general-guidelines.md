@@ -1,12 +1,48 @@
+# Project Context
+
+**Balentio Voice** is a commercial SaaS product (NOT open-source). It consists of:
+- Desktop app (macOS/Windows) - Tauri + Svelte 5
+- Backend API - Hono + PostgreSQL + Supabase
+- Database - Drizzle ORM
+
+This is a **private repository** for commercial development.
+
+# Planning with specs/
+
+For **complex features or phases** that need detailed planning, create a spec file:
+- Format: `specs/DD.MM.YY - [feature-name].md` (e.g., `specs/15.01.26 - Phase 1 Backend Foundation.md`)
+- Include: problem description, solution, implementation plan, testing strategy
+- NOT needed for simple tasks (small bug fixes, minor UI tweaks)
+
+During implementation, follow domain-specific rules from `rules/*.md`:
+- Backend work → load `@rules/backend.md`, `@rules/database.md`, `@rules/security.md`
+- Desktop work → load `@rules/typescript.md`, `@rules/svelte.md`, `@rules/styling.md`
+- Git operations → follow `@rules/git.md`
+
 # Standard Workflow
 
-1. First think through the problem, read the codebase for relevant files, and write a plan to specs/[timestamp] [feature-name].md where [timestamp] is the timestamp in YYYYMMDDThhmmss format and [feature-name] is the name of the feature.
-2. The plan should have a list of todo items that you can check off as you complete them
-3. Before you begin working, check in with me and I will verify the plan.
-4. Then, begin working on the todo items, marking them as complete as you go.
-5. Please every step of the way just give me a high level explanation of what changes you made
-6. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
-7. Finally, add a review section to the .md file with a summary of the changes you made and any other relevant information.
+## For Complex Features (requiring spec):
+
+1. **Think through the problem**: Read codebase for relevant files and context
+2. **Write a plan**: Create `specs/DD.MM.YY - [feature-name].md` with:
+   - Problem description
+   - Solution and approach
+   - List of relevant files to read
+   - Implementation plan with todo items
+   - Testing strategy
+   - Acceptance criteria
+3. **Get approval**: Check in before starting work
+4. **Execute**: Work on todo items, mark complete as you go
+5. **Communicate**: Give high-level explanations of changes at each step
+6. **Simplicity first**: Make every change as simple as possible, impact minimal code
+7. **Review**: Add review section to spec with summary of changes and learnings
+
+## For Simple Tasks (no spec needed):
+
+1. Read relevant code and rules
+2. Make minimal, focused changes
+3. Follow domain-specific guidelines
+4. Commit with conventional commit messages
 
 # Expensive/destructive actions
 
@@ -43,11 +79,25 @@ I need honest feedback on my code.
 
 Specs always live at the root level of their scope (not inside `docs/`):
 
-- **`/specs/`** - Cross-cutting features, architecture decisions, general tooling
+- **`/specs/`** - Cross-cutting features, architecture decisions, phases
 - **`/apps/[app]/specs/`** - Features specific to one app only
 - **`/packages/[pkg]/specs/`** - Package-specific implementation details
 
-When in doubt, use `/specs/`. Move to app/package-specific only if the spec truly belongs there.
+**For Balentio Voice**: Most specs go in `/specs/` since features involve both Desktop + Backend.
+
+## When to Create a Spec
+
+**Create a spec when:**
+- Starting a new development phase (Phase 1, Phase 2, etc.)
+- Building a complex feature spanning multiple files/services
+- Making architectural decisions
+- Need to coordinate Desktop ↔ Backend integration
+
+**Skip spec for:**
+- Small bug fixes
+- Minor UI adjustments
+- Simple refactoring
+- Adding a single utility function
 
 # Script Commands
 

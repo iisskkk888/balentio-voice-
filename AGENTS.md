@@ -27,6 +27,13 @@ Load these domain-specific guidelines only when working in their respective doma
 - Svelte patterns, TanStack Query, component composition: @rules/svelte.md
 - Rust to TypeScript error handling (Tauri): @rules/rust.md
 
+**Backend & Database:**
+
+- Backend API patterns, project structure (Hono): @rules/backend.md
+- Database schema, migrations, queries (Drizzle ORM): @rules/database.md
+- JWT authentication, secure storage, API security: @rules/security.md
+- Stripe webhooks, idempotency, payment handling: @rules/stripe.md
+
 **Development Practices:**
 
 - wellcrafted trySync/tryAsync error handling: @rules/error-handling.md
