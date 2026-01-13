@@ -1,103 +1,110 @@
 ---
-description: Execute an implementation plan
-argument-hint: [path-to-plan]
+description: Prime agent with codebase understanding for remote GitHub workflow
 ---
 
-# Execute: Implement from Plan
+# Prime: Load Project Context
 
-## Plan to Execute
+## Objective
 
-Read plan file: `$ARGUMENTS`
+Build comprehensive understanding of the codebase by analyzing structure, documentation, key files, and GitHub repository state for remote development workflow.
 
-## Execution Instructions
+**🚨 CRITICAL RULE - READ THIS FIRST 🚨**
 
-### 1. Read and Understand
+**YOU ARE FORBIDDEN FROM IMPLEMENTING ANYTHING.**
 
-- Read the ENTIRE plan carefully
-- Understand all tasks and their dependencies
-- Note the validation commands to run
-- Review the testing strategy
+This is a READ-ONLY analysis command. You must:
+- ❌ NOT edit ANY files (no Write, Edit, or file modification tools)
+- ❌ NOT implement the feature described in the GitHub issue
+- ❌ NOT make any code changes whatsoever
+- ❌ NOT solve the problem - just understand it
+- ✅ ONLY read files and analyze the project structure
+- ✅ ONLY provide a summary report
 
-### 2. Execute Tasks in Order
+**Your ONLY job is to analyze the codebase and report what you find. The actual implementation will happen in a SEPARATE command later.**
 
-For EACH task in "Step by Step Tasks":
+If you implement anything, you have FAILED this command.
 
-#### a. Navigate to the task
-- Identify the file and action required
-- Read existing related files if modifying
+## Process
 
-#### b. Implement the task
-- Follow the detailed specifications exactly
-- Maintain consistency with existing code patterns
-- Include proper type hints and documentation
-- Add structured logging where appropriate
+### 1. Analyze Project Structure
 
-#### c. Verify as you go
-- After each file change, check syntax
-- Ensure imports are correct
-- Verify types are properly defined
+List all tracked files:
+!`git ls-files`
 
-### 3. Implement Testing Strategy
+Show directory structure:
+On Linux, run: `tree -L 3 -I 'node_modules|__pycache__|.git|dist|build'`
 
-After completing implementation tasks:
+### 2. Read Core Documentation
 
-**Recommended Approach:** Write failing tests first for complex logic (especially path handling, type conversions). This provides faster feedback than implementing then testing.
+- Read PRD or similar files
+- Read CLAUDE.md/AGENTS.md or similar global rules file
+- Read README files at project root and major directories
+- Read any architecture documentation
 
-- Create all test files specified in the plan
-- Implement all test cases mentioned
-- Follow the testing approach outlined
-- Ensure tests cover edge cases
+### 3. Identify Key Files
 
-### 4. Run Validation Commands
+Based on the structure, identify and read:
+- Main entry points (main.py, index.ts, app.py, etc.)
+- Core configuration files (pyproject.toml, package.json, tsconfig.json)
+- Key model/schema definitions
+- Important service or controller files
 
-Execute ALL validation commands from the plan in order:
+### 4. Understand Current State
 
-```bash
-# Run each command exactly as specified in plan
-```
+Check recent activity:
+!`git log -10 --oneline`
 
-If any command fails:
-- Fix the issue
-- Re-run the command
-- Continue only when it passes
+Check current branch and status:
+!`git status`
 
-### 5. Final Verification
+**GitHub Repository Context:**
+- Verify remote repository connection: `git remote -v`
+- Check if we're on main/master branch (important for feature branch creation)
+- Note any uncommitted changes that might need stashing
 
-Before completing:
+### 5. Verify GitHub CLI Access
 
-- ✅ All tasks from plan completed
-- ✅ All tests created and passing
-- ✅ All validation commands pass
-- ✅ Code follows project conventions
-- ✅ Documentation added/updated as needed
+Ensure GitHub CLI is configured:
+!`gh auth status`
+
+This confirms we can create branches and pull requests remotely.
 
 ## Output Report
 
-Provide summary:
+Provide a concise summary covering:
 
-### Completed Tasks
-- List of all tasks completed
-- Files created (with paths)
-- Files modified (with paths)
+### Project Overview
+- Purpose and type of application
+- Primary technologies and frameworks
+- Current version/state
 
-### Tests Added
-- Test files created
-- Test cases implemented
-- Test results
+### Architecture
+- Overall structure and organization
+- Key architectural patterns identified
+- Important directories and their purposes
 
-### Validation Results
-```bash
-# Output from each validation command
-```
+### Tech Stack
+- Languages and versions
+- Frameworks and major libraries
+- Build tools and package managers
+- Testing frameworks
 
-### Ready for Commit
-- Confirm all changes are complete
-- Confirm all validations pass
-- Ready for `/commit` command
+### Core Principles
+- Code style and conventions observed
+- Documentation standards
+- Testing approach
 
-## Notes
+### Current State
+- Active branch (note if on main/master for feature branching)
+- Recent changes or development focus
+- Any uncommitted changes or work in progress
+- GitHub remote repository URL
+- GitHub CLI authentication status
 
-- If you encounter issues not addressed in the plan, document them
-- If you need to deviate from the plan, explain why
-- If tests fail, fix implementation until they pass
-- Don't skip validation steps
+### Remote Development Readiness
+- ✓ On main/master branch (ready for feature branch creation)
+- ✓ Working tree clean (or note what needs stashing)
+- ✓ GitHub CLI authenticated
+- ✓ Remote repository accessible
+
+**Make this summary easy to scan - use bullet points and clear headers.**
